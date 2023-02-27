@@ -15,21 +15,18 @@ export class Searchbar extends Component {
   handleChange = e => {
     const value = e.target.value;
     this.setState({ searchImage: value });
-    };
-    
-    // handleSubmit = e => {
-    //     e.preventDefault();
-    //     const { searchImage } = this.state;
-    //     this.props.onSubmit({ ...this.state });
-    //     this.reset();
-    // }
+  };
 
-    
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.onSubmit(this.state.searchImage);
+    this.setState({ searchImage: '' });
+  };
 
   render() {
     const { searchImage } = this.state;
     return (
-      <StyledSearchbar>
+      <StyledSearchbar onSubmit={this.handleSubmit}>
         <StyledSearchForm>
           <StyledSearchFormButton type="submit">
             <StyledSearchFormButtonLabel>Search</StyledSearchFormButtonLabel>
