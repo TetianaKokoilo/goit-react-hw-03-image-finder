@@ -1,12 +1,14 @@
-import Searchbar from '../components/Searchbar/Searchbar';
+import { Component } from 'react';
+import { Searchbar } from './Searchbar/Searchbar';
 
-
-export const App = () => {
-  return (
-    <div>
-      <Searchbar />
-      {/* <ImageGallery /> */}
-      {/* <Button/> */}
-    </div>
-  );
-};
+export class App extends Component {
+  render() {
+    return (
+      <div>
+        <Searchbar />
+        {/* <ImageGallery /> */}
+        {/* <Button/> */}
+      </div>
+    );
+  }
+}

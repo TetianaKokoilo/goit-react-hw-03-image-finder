@@ -3,26 +3,48 @@ import {
   StyledSearchForm,
   StyledSearchFormButton,
   StyledSearchFormButtonLabel,
-  StyledSearchFormInput
+  StyledSearchFormInput,
 } from './Searchbar.styled';
-import { BiSearch } from 'react-icons/bi';
+import { Component } from 'react';
 
-export default function Searchbar() {
-  return (
-    <StyledSearchbar>
-      <StyledSearchForm>
-        <StyledSearchFormButton type="submit">
-            <BiSearch />
-          <StyledSearchFormButtonLabel>Search</StyledSearchFormButtonLabel>
-        </StyledSearchFormButton>
+export class Searchbar extends Component {
+  state = {
+    searchImage: '',
+  };
 
-        <StyledSearchFormInput
-          type="text"
-          autoComplete="off"
-          autoFocus
-          placeholder="Search images and photos"
-        />
-      </StyledSearchForm>
-    </StyledSearchbar>
-  );
+  handleChange = e => {
+    const value = e.target.value;
+    this.setState({ searchImage: value });
+    };
+    
+    // handleSubmit = e => {
+    //     e.preventDefault();
+    //     const { searchImage } = this.state;
+    //     this.props.onSubmit({ ...this.state });
+    //     this.reset();
+    // }
+
+    
+
+  render() {
+    const { searchImage } = this.state;
+    return (
+      <StyledSearchbar>
+        <StyledSearchForm>
+          <StyledSearchFormButton type="submit">
+            <StyledSearchFormButtonLabel>Search</StyledSearchFormButtonLabel>
+          </StyledSearchFormButton>
+
+          <StyledSearchFormInput
+            type="text"
+            autoComplete="off"
+            autoFocus
+            placeholder="Search images and photos"
+            value={searchImage}
+            onChange={this.handleChange}
+          />
+        </StyledSearchForm>
+      </StyledSearchbar>
+    );
+  }
 }
