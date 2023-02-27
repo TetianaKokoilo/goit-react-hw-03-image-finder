@@ -1,19 +1,28 @@
+import {
+  StyledSearchbar,
+  StyledSearchForm,
+  StyledSearchFormButton,
+  StyledSearchFormButtonLabel,
+  StyledSearchFormInput
+} from './Searchbar.styled';
+import { BiSearch } from 'react-icons/bi';
+
 export default function Searchbar() {
   return (
-    <header className="searchbar">
-      <form className="form">
-        <button type="submit" className="button">
-          <span className="button-label">Search</span>
-        </button>
+    <StyledSearchbar>
+      <StyledSearchForm>
+        <StyledSearchFormButton type="submit">
+            <BiSearch />
+          <StyledSearchFormButtonLabel>Search</StyledSearchFormButtonLabel>
+        </StyledSearchFormButton>
 
-        <input
-          className="input"
+        <StyledSearchFormInput
           type="text"
           autoComplete="off"
           autoFocus
           placeholder="Search images and photos"
         />
-      </form>
-    </header>
+      </StyledSearchForm>
+    </StyledSearchbar>
   );
 }
