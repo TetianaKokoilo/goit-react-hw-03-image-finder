@@ -10,7 +10,12 @@ export class App extends Component {
     isLoading: false,
   };
 
-  // componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.searchImage !== this.state.searchImage) {
+      console.log('Изменилось имя картинки');
+      console.log('prevProps.searchImage', prevState.searchImage);
+      console.log('this.props.searchImage', this.state.searchImage)
+    }
   //   this.setState({ isLoading: true });
   //   fetch(
   //     `https://pixabay.com/api/?q=cat&page=1&key=${API_KEY}&image_type=photo&orientation=horizontal&per_page=12`
@@ -18,7 +23,7 @@ export class App extends Component {
   //     .then(response => response.json())
   //     .then(image => this.setState({ image }))
   //     .finally(() => this.setState({ isLoading: false }));
-  // }
+  }
 
   getSearchSubmit = searchImage => {
     this.setState({ searchImage });
