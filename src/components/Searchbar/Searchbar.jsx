@@ -22,8 +22,7 @@ export class Searchbar extends Component {
   handleSubmit = e => {
     e.preventDefault();
     if (this.state.searchImage.trim() === '') {
-      Notify.info('Please enter the name of the picture for the request');
-      return;
+      return Notify.info('Please enter the name of the picture for the request');
     }
     this.props.onSubmit(this.state.searchImage);
     this.setState({ searchImage: '' });

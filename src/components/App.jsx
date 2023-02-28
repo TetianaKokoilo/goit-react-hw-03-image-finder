@@ -1,11 +1,12 @@
 import { Component } from 'react';
 import { Searchbar } from './Searchbar/Searchbar';
+import { ImageGallery } from './ImageGallery/ImageGallery'
 
 const API_KEY = '32970758-8ba6ee6d9fec7577e22e4216e';
 export class App extends Component {
   state = {
     searchImage: '',
-    image: [],
+    images: [],
     isLoading: false,
   };
 
@@ -27,8 +28,8 @@ export class App extends Component {
       <div>
         <Searchbar onSubmit={this.getSearchSubmit} />
         {this.state.isLoading && <div>Loading...</div>}
-        {this.state.image && <div>image</div>}
-        {/* <ImageGallery /> */}
+        {this.state.images && <div>image</div>}
+        <ImageGallery />
         {/* <Button/> */}
       </div>
     );
