@@ -6,6 +6,8 @@ import {
   StyledSearchFormInput,
 } from './Searchbar.styled';
 import { Component } from 'react';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
 
 export class Searchbar extends Component {
   state = {
@@ -13,12 +15,16 @@ export class Searchbar extends Component {
   };
 
   handleChange = e => {
-    const value = e.target.value;
+    const value = e.target.value.toLowerCase();
     this.setState({ searchImage: value });
   };
 
   handleSubmit = e => {
     e.preventDefault();
+    if (this.state.searchImage.trim() === '') {
+      Notify.info('Please enter the name of the picture for the request');
+      return;
+    }
     this.props.onSubmit(this.state.searchImage);
     this.setState({ searchImage: '' });
   };
