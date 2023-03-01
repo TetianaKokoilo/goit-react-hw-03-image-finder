@@ -1,13 +1,18 @@
 const API_KEY = '32970758-8ba6ee6d9fec7577e22e4216e';
 
-export default async function PixApi(name, page) {
-  const response = await fetch(
+function fetchImages(name, page) {
+  return fetch(
         `https://pixabay.com/api/?q=${name}&page=${page}&key=${API_KEY}&image_type=photo&orientation=horizontal&per_page=12`
-    );
-    if (response.ok) {
+    ).then(response => {if (response.ok) {
         return response.json();
     }
-    return await Promise.reject(
+    return Promise.reject(
         new Error(`We don't have pictures with ${name} word`)
-    );
+    );})
+    
 }
+
+const api = {
+    fetchImages,
+};
+export default api;
