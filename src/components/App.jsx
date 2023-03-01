@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Searchbar } from './Searchbar/Searchbar';
 import { ImageGallery } from './ImageGallery/ImageGallery';
 import { ImageGalleryItem } from './ImageGalleryItem/ImageGalleryItem';
-import PickAPI from './images-api';
+import PixabeyAPI from './images-api';
 
 export class App extends Component {
   state = {
@@ -16,7 +16,7 @@ export class App extends Component {
     if (prevState.name !== this.state.name) {
       this.setState({ isLoading: true, images: [] });
 
-      PickAPI.fetchImages(this.state.name, this.state.page)
+      PixabeyAPI.fetchImages(this.state.name, this.state.page)
         .then(images => this.setState({ images: images.hits }))
 
         .catch(error => this.setState({ error }))

@@ -13,7 +13,7 @@ async function fetchImages(name, page) {
     
 }
 
-const PickAPI = {
+const PixabeyAPI = {
     fetchImages,
 };
-export default PickAPI;
+export default PixabeyAPI;
