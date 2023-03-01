@@ -15,11 +15,3 @@ export class ImageGalleryItem extends Component {
     );
   }
 }
-
-// export default function ImageGalleryItem({
-//   image: { image, tags, onClick, index },
-// }) {
-//   <li class="gallery-item">
-//     <img src={image} alt={tags} />
-//   </li>;
-// }
