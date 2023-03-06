@@ -3,6 +3,7 @@ import { Searchbar } from './Searchbar/Searchbar';
 import { ImageGallery } from './ImageGallery/ImageGallery';
 import { ImageGalleryItem } from './ImageGalleryItem/ImageGalleryItem';
 import { Modal } from 'components/Modal/Modal';
+import { Loader } from './Loader/Loader';
 import PixabeyAPI from './images-api';
 
 export class App extends Component {
@@ -44,12 +45,13 @@ export class App extends Component {
 
 
   render() {
-    const { error, images, showModal, index } = this.state;
+    const { error, images, showModal, index, isLoading } = this.state;
 
     return (
       <div>
         <Searchbar onSubmit={this.getSearchSubmit} />
         {error && <div>{error.message}</div>}
+        {isLoading && <Loader />}
         <ImageGallery>
           {images.map((image, index) => {
             return (
