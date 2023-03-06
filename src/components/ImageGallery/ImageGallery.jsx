@@ -1,8 +1,8 @@
-
 import React, { Component } from 'react';
+import { StyledImageGallery } from './ImageGallery.styled';
 
 export class ImageGallery extends Component {
   render() {
-    return <ul>{this.props.children}</ul>;
+    return <StyledImageGallery>{this.props.children}</StyledImageGallery>;
   }
 }
