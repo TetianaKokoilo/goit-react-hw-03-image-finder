@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Searchbar } from './Searchbar/Searchbar';
 import { ImageGallery } from './ImageGallery/ImageGallery';
 import { ImageGalleryItem } from './ImageGalleryItem/ImageGalleryItem';
+import { Modal } from 'components/Modal/Modal';
 import PixabeyAPI from './images-api';
 
 export class App extends Component {
@@ -11,6 +12,8 @@ export class App extends Component {
     isLoading: false,
     error: null,
     images: [],
+    showModal: false,
+    index: null,
   };
   componentDidUpdate = (prevProps, prevState) => {
     if (prevState.name !== this.state.name) {
@@ -25,13 +28,23 @@ export class App extends Component {
         });
     }
   };
+  getIndex = index => {
+    this.setState({ index });
+  };
 
   getSearchSubmit = name => {
     this.setState({ name });
   };
 
+  toggleModal = () => {
+    this.setState(({ showModal }) => ({
+      showModal: !showModal,
+    }));
+  };
+
+
   render() {
-    const { error, images } = this.state;
+    const { error, images, showModal, index } = this.state;
 
     return (
       <div>
@@ -51,6 +64,11 @@ export class App extends Component {
             );
           })}
         </ImageGallery>
+        {showModal && (
+          <Modal onClose={this.toggleModal}>
+            <img src={images[index].largeImageURL} alt={images[index].tags} />
+          </Modal>
+        )}
       </div>
     );
   }
