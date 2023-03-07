@@ -17,25 +17,42 @@ export class App extends Component {
     showModal: false,
     index: null,
   };
+  
   componentDidUpdate = (prevProps, prevState) => {
     if (prevState.name !== this.state.name) {
       this.setState({ isLoading: true, images: [] });
 
       PixabeyAPI.fetchImages(this.state.name, this.state.page)
         .then(images => this.setState({ images: images.hits }))
-
         .catch(error => this.setState({ error }))
         .finally(() => {
           this.setState({ isLoading: false });
+          this.setState(prevState => ({ page: prevState.page + 1 }));
         });
     }
   };
+
+  loadMore = () => {
+    this.setState({ isLoading: true });
+
+    PixabeyAPI.fetchImages(this.state.name, this.state.page)
+      .then(images =>
+        this.setState(prevState => ({
+          images: [...prevState.images, ...images.hits],
+          page: prevState.page + 1,
+        }))
+      )
+      .catch(error => this.setState({ error }))
+      .finally(() => this.setState({ isLoading: false }));
+  };
+
   getIndex = index => {
     this.setState({ index });
   };
 
   getSearchSubmit = name => {
     this.setState({ name });
+    this.setState({ page: 1 });
   };
 
   toggleModal = () => {
@@ -44,9 +61,8 @@ export class App extends Component {
     }));
   };
 
-
   render() {
-    const { error, images, showModal, index, isLoading } = this.state;
+    const { error, images, showModal, index, isLoading, page } = this.state;
 
     return (
       <div>
@@ -72,7 +88,9 @@ export class App extends Component {
             <img src={images[index].largeImageURL} alt={images[index].tags} />
           </Modal>
         )}
-        <Button />
+        {images.length >= 12 && (
+          <Button onLoadMore={this.loadMore} pageNumber={page} />
+        )}
       </div>
     );
   }
