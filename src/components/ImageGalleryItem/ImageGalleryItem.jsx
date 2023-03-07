@@ -4,7 +4,7 @@ export class ImageGalleryItem extends Component {
   render() {
     const { image, tags, onClick, index } = this.props;
     return (
-      <StyledImageGalleryItem lionClick={onClick}>
+      <StyledImageGalleryItem onClick={onClick}>
         <StyledGalleryImage
           onClick={() => {
             this.props.getIndex(index);
