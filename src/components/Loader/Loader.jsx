@@ -5,7 +5,7 @@ export const Loader = () => (
     height={100}
     width={100}
     radius={5}
-    color="#4fa94d"
+    color="#303f9f"
     ariaLabel="ball-triangle-loading"
     wrapperClass={{}}
     wrapperStyle=""
