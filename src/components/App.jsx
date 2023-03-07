@@ -4,6 +4,7 @@ import { ImageGallery } from './ImageGallery/ImageGallery';
 import { ImageGalleryItem } from './ImageGalleryItem/ImageGalleryItem';
 import { Modal } from 'components/Modal/Modal';
 import { Loader } from './Loader/Loader';
+import { Button } from './Button/Button';
 import PixabeyAPI from './images-api';
 
 export class App extends Component {
@@ -71,6 +72,7 @@ export class App extends Component {
             <img src={images[index].largeImageURL} alt={images[index].tags} />
           </Modal>
         )}
+        <Button />
       </div>
     );
   }
