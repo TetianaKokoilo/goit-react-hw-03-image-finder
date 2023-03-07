@@ -6,6 +6,7 @@ import { Modal } from 'components/Modal/Modal';
 import { Loader } from './Loader/Loader';
 import { Button } from './Button/Button';
 import PixabeyAPI from './images-api';
+import PropTypes from 'prop-types';
 
 export class App extends Component {
   state = {
@@ -17,6 +18,9 @@ export class App extends Component {
     showModal: false,
     index: null,
   };
+  static propTypes = {
+    images: PropTypes.array,
+  }
   
   componentDidUpdate = (prevProps, prevState) => {
     if (prevState.name !== this.state.name) {
